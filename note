@@ -1,0 +1,19 @@
+1.组件职责和关系
+  Channel 通道【连接和IO】，只绑定一个EventLoop
+ 
+  EventLoop 管理通道的事件【生命周期】，只和一个线程绑定，该线程处理I/O，单个线程消除了同步问题。
+  
+  EventLoopGroup 管理多个eventLoop，一个eventLoop可以进入多个组。
+
+2.ChannelFuture机制：发出请求，监听回调
+
+3.ChannelHandler和ChannelPipeline
+  ChannelHandler：出站和入站处理逻辑容器，由事件触发再响应。其下有ChannelInboundHandler,ChannelOutboundHandler
+  
+  ChannelPipeline：提供ChannelHandler链容器【责任链模式】，用于出入站事件流的传播。Channel创建后会分配到
+  对应的ChannelPipeline.过程：
+      一个init=ChannelInitializer实现注册到SeverBootStrap中，init.initChannel调用时，
+  ChannelInitializer在 ChannelPipeline中安装一组自定义的 ChannelHandler。ch.pipeline().addLast(ChannelHandler),ChannelInitializer移除自己。
+  
+  ChannelHandlerContext  上下文，可以传播事件，单向传播。可以获取到channel和读写数据。netty提供了ChannelInboundHandlerAdapter和ChannelOutboundHandlerAdapter抽象基类,部分实现可以用默认。
+  netty消息发送方式：（1）写到channel中，数据从channelpipeline尾端开始；（2）写到上下文中，数据从下一个channelhandler开始。
