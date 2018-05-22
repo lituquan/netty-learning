@@ -1,0 +1,17 @@
+1.channel生命周期
+  已注册-->激活-->非激活-->未注册
+  
+ 2.channelHandler生命周期
+  在进入或离开ChannelPipeLine时调用：添加，移除，异常；
+  子接口：channelInBoundHandler
+  子接口：channelOutBoundHandler
+ 3.ChannelHandler适配器 
+
+ 4.ChannelPipeLine
+  一个channel分配一个ChannelPipeLine，添加、删除、替换ChannelHandler改变ChannelPipeLine。
+  
+ 5.ChannelPipeLine的事件触发
+ 
+ 6.ChannelHandler上下文
+ 
+ 7.异常处理
