@@ -1,0 +1,10 @@
+1.引导
+  用来配置网络层，达到逻辑业务和网络层解耦合。
+  
+  服务端ServerBootStrap和客户端BootStrap不同引导，因为客户端要知道服务端主机地址。二者使用同样的port对接。服务端监听端口，客户端连接端口。
+  
+ 2.EventLoopGroup
+  客户端只需要一组，服务端可能要两组。
+  服务端：第一组包含一个serverChannel，用来代表自身绑定的端口监听的套接字；第二组代表了已创建的客户端连接Channel。
+  server自身的EventLoopGroup会分配一个EventLoop负责创建channel；第二个EventLoopGroup会分配EventLoop管理channel的事件后序。
+  
