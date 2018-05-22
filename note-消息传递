@@ -1,0 +1,11 @@
+1.通信两大方面
+  连接和协议，协议涉及编码和解码。如http协议，tcp连接和http报文协议。
+ 
+2.编码、解码器实现了ChannelInboundHandler、ChannelOutboundHandler
+  ChannelInboundHandler：入站事件，channelread(),预置编码器调用decode()，一般是byte-->msg，然后传递到下个ChannelInboundHandler。
+  ChannelOutboundHandler：相反，一般是msg-->byte。
+
+3.SimpleChannelInboundHandler 
+  继承该类，传递上下文ChannelHandlerContext即可。
+
+  
