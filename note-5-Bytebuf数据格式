@@ -1,0 +1,11 @@
+1.两个索引
+readerIndex和writerIndex
+
+Bytebuf有容量，有长度：writerIndex代表了长度，readerIndex是可移动下标。容量为最大writerIndex可写位置。
+
+2.不同缓冲区
+  堆上缓存区、直接缓存区、复合缓冲区
+  
+3.字节级操作
+
+4.索引管理
