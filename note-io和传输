@@ -1,0 +1,16 @@
+1.Bio
+  server 和 client交换数据：
+    server端口监听：Serversocket(带port).accept()，阻塞-->返回socket-->阻塞：获取I/O流
+    客户端连接：socket连接-->阻塞：获取I/O流
+
+2.Nio
+
+3.Netty
+  引导-->XxxServerChannel-->设置port-->添加ChannelHandler-->ChannelFutruesync()绑定服务-->阻塞：等待回调
+  
+  依赖：channel，channelHandler，channelPipeLine【状态：自我，关系：辅助，动作：行为】
+  
+4.内置传输  
+  远程：NIO，OIO，Epoll【Epoll！Epoll！Epoll！】
+  本地：Local
+  嵌入：Embedded
