@@ -1,0 +1,28 @@
+1.线程模型
+原始线程按需创建，用完即止。
+
+线程池：用户提交任务，线程池执行器分配线程，任务停止，线程归还，一个类似悬赏的系统。
+
+2.EventLoop
+事件循环，事件处理。
+
+线程安全【current】和网络交互【channel】
+
+一个EventLoop对应一个不变的Thread，任务直接提交给EventLoop，即时任务或者调度任务，执行顺序为FIFO，保证byte不会乱，数据正常。
+
+一个EventLoop可以指派到多个channel。
+
+IO操作触发事件-->ChannelHandler：ChannelPipeline.netty4:所有IO操作和事件在分配给EventLoop的那个Thread来处理。
+netty3中入站也是该线程处理，但是出站由调用的线程处理。
+
+3.任务调度
+
+Future:ScheduledExecutorService
+
+任务提交-->当前线程是否是分配给EventLoop的线程-->是：执行，否：进入队列
+
+4.EventLoop及线程分配
+  异步传输：
+  EventLoopGroup-->n个EventLoop，每个EventLoop一个线程-->每个EventLoop多个channel共享
+  同步传输：
+  EventLoopGroup-->n个EventLoop，每个EventLoop一个线程-->每个EventLoop一个channel
