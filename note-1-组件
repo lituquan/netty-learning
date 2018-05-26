@@ -17,3 +17,9 @@
   
   ChannelHandlerContext  上下文，可以传播事件，单向传播。可以获取到channel和读写数据。netty提供了ChannelInboundHandlerAdapter和ChannelOutboundHandlerAdapter抽象基类,部分实现可以用默认。
   netty消息发送方式：（1）写到channel中，数据从channelpipeline尾端开始；（2）写到上下文中，数据从下一个channelhandler开始。
+  
+4.简单netty服务过程
+
+  BootStrap->绑定ServerSocketChannel->分配事件循环组->绑定服务处理器->连接目标ip和端口->开始服务
+
+  ServerBootStrap->绑定ServerSocketChannel->分配事件循环组->绑定客户处理器->监听端口->启动服务
